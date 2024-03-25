@@ -1,0 +1,15 @@
+.formulario {
+    width: 500px;
+    margin: auto;
+}
+
+.form-logout{
+    display: flex;
+    flex-direction: row;
+    padding-left: 10px;
+}
+
+.icone-log{
+    padding: 13px 0px 0px 0px;
+}
+
