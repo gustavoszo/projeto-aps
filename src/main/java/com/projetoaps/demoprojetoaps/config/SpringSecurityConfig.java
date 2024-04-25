@@ -16,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.projetoaps.demoprojetoaps.security.SecurityUserDetailsService;
 
-// import com.projetoaps.demoprojetoaps.entity.Usuario.Role;
+import com.projetoaps.demoprojetoaps.entity.Usuario.Role;
 
 @Configuration
 @EnableWebSecurity
@@ -24,7 +24,7 @@ import com.projetoaps.demoprojetoaps.security.SecurityUserDetailsService;
 public class SpringSecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
@@ -32,14 +32,15 @@ public class SpringSecurityConfig {
                     antMatcher("/js/**"),
                     antMatcher("/resources/**"),
                     antMatcher("/errors/**"),
-                    antMatcher(HttpMethod.GET, "/")
+                    antMatcher(HttpMethod.GET, "/"),
+                    antMatcher(HttpMethod.GET, "/covid/**")
                 ).permitAll()
-                // .requestMatchers(HttpMethod.GET, "/adm/**").hasAuthority(Role.ADMIN.name())
+                .requestMatchers(HttpMethod.GET, "/admin/**").hasAuthority(Role.ROLE_ADMIN.name())
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/", true)
+                .defaultSuccessUrl("/admin", true)
                 // .failureUrl("/login-error")
                 .permitAll()
             )

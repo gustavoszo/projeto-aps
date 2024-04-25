@@ -1,0 +1,36 @@
+<!-- Modal -->
+<div class="modal fade" id="deleteUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="usuario">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Apagar usuário</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Deseja realmente deletar esse usuário?
+      </div>
+      <div class="modal-footer">
+        <a th:href="@{/admin/usuarios/deletar/{id} (id = ${u.id})}" class="btn btn-danger">Deletar</a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteCovid" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="covid">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" th:text="|${c.local.descricao} de ${c.semana}|">Apagar registro</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Deseja realmente deletar esse registro?
+      </div>
+      <div class="modal-footer">
+        <a th:href="@{/admin/covid/deletar/{id} (id = ${c.id})}" class="btn btn-danger">Deletar</a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

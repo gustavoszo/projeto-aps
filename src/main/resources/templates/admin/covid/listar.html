@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout-admin}">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+    <div layout:fragment="corpo">
+        <i class="fa-solid fa-play"></i><span> Covid</span>
+        
+        <div class="container content">        
+            <div th:replace="~{fragments/alert}"></div>
+
+            <a th:href="@{/admin/covid/cadastrar}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Nova semana</a>
+
+            <table class="table table-striped table-hover" width="100%" id="myTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Local</th>
+                        <th>Casos</th>
+                        <th>Óbitos</th>
+                        <th>Semana</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr th:each="c : ${covid}">
+                        <div th:replace="~{fragments/modal :: covid}"></div>
+                        <td th:text="${c.id}">Data</td>
+                        <td th:text="${c.local.descricao}">Data</td>
+                        <td th:text="${c.qtCasos}">Data</td>
+                        <td th:text="${c.qtObitos}">Data</td>
+                        <td th:text="${c.semana}">Data</td>
+                        <td>
+                            <a th:href="@{/admin/covid/editar/{id} (id = ${c.id})}"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="*" data-bs-toggle="modal" data-bs-target="#deleteCovid"><i class="fa-solid fa-trash"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+    

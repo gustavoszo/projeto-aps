@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout-admin}">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+    <div layout:fragment="corpo">
+        <i class="fa-solid fa-play"></i><span> Usuários</span>
+
+        <div class="container content">
+            <div th:replace="~{fragments/alert}"></div>
+
+            <a th:href="@{/admin/usuarios/cadastrar}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Novo usuário</a>
+
+            <table class="table table-striped table-hover" id="mySecondTable"> 
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Tipo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr th:each="u : ${usuarios}">
+                        <div th:replace="~{fragments/modal :: usuario}"></div>
+                        <td th:text="${u.id}">Data</td> 
+                        <td th:text="${u.nome}">Data</td>
+                        <td th:text="${u.username}">Data</td>
+                        <td th:text="${u.role.tipo}">Data</td>
+                        <td>
+                            <a th:href="@{/admin/usuarios/editar/{id} (id = ${u.id})}"><i class="fa-solid fa-user-pen"></i></a>
+                            <!-- <a class="menu-cursor" th:id="${ 'btn_admin/usuarios/deletar/' + u.id }" data-bs-toggle="modal" data-bs-target="#deleteUsuario"><i class="fa-solid fa-trash"></i></a> -->
+                            <a href="*" data-bs-toggle="modal" data-bs-target="#deleteUsuario"><i class="fa-solid fa-trash"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+    

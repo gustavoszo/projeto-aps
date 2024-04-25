@@ -30,7 +30,7 @@ public class Home {
         return "/login";
     }
 
-    @ModelAttribute("usuario")
+    @ModelAttribute("user")
     public Usuario usuarioLogado() {
         return loggedUser.BuscarPorUsuarioLogado();
     }

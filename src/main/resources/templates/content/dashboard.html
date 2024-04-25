@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+    <div layout:fragment="corpo">
+        <div class="container-fluid content">
+            <h2>Dashboard</h2>
+
+            <div class="row space-bottom">
+                <div class="col-md-6">
+                    <canvas id="myChartCasos"></canvas>
+                </div>
+                <div class="col-md-6 text-center">
+                    <!-- <h2>Algo</h2> -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <canvas id="myChartObitos"></canvas>
+                </div>
+                <div class="col-md-6 text-center">
+                    <!-- <h2>Algo</h2> -->
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script th:inline="javascript">
+            var casos = /*[[${casos}]]*/ [];
+            var obitos = /*[[${obitos}]]*/ [];
+            var locais = /*[[${locais}]]*/ [];
+
+            function createChart(data, id) {
+                // Configurações do gráfico
+                const config = {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                        }
+                    },
+                };
+    
+                // Criar o gráfico
+                var myChart = new Chart(
+                    id,
+                    config
+                );
+            }
+
+            const dataCasos = {
+                labels: locais,
+                datasets: [{
+                    label: 'Total de casos',
+                    data: casos,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+
+            const dataObitos = {
+                labels: locais,
+                datasets: [{
+                    label: 'Total de óbitos',
+                    data: obitos,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+    
+            createChart(dataCasos, document.getElementById('myChartCasos'));
+            createChart(dataObitos, document.getElementById('myChartObitos'));
+
+        </script>
+    </div>
+
+</body>
+</html>
+    

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+    <div layout:fragment="corpo">
+      
+      <div class="local-pagina">
+        <i class="fa-solid fa-play"></i> <span class="fw-bold" th:text="${pagina.descricao}"></span>
+      </div>
+
+      <div class="text-center">
+        <h5><i class="fa-regular fa-calendar-days"></i></h5>
+        <h4 class="fw-bold" th:text="|Semana ${menorSemana} - Semana ${maiorSemana}|"></h4>
+      </div>
+
+      <div class="container content">
+
+        <div class="triple-cards">
+          <div class="card mb-3 col-md-3">
+            <div class="card-header bg-primary text-white">Total de casos</div>
+              <div class="card-body">
+                <strong><p class="card-text text-center" th:text="${qtCasos}"></p></strong>
+              </div>
+          </div>
+          <div class="card mb-3 col-md-3">
+              <div class="card-header bg-primary text-white">Total de óbitos</div>
+              <div class="card-body">
+                <strong><p class="card-text text-center" th:text="${qtObitos}">Valor</p></strong>
+              </div>
+          </div>
+          <div class="card mb-3 col-md-3">
+              <div class="card-header bg-primary text-white">Taxa de letalidade</div>
+              <div class="card-body">
+                <strong><p class="card-text text-center" th:text="${taxaLetalidade}">Valor</p></strong>
+              </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-filtro" id="btnFiltro" type="button" aria-expanded="false"><i class="fa-solid fa-magnifying-glass"></i> Filtrar por semana</button>
+      
+        <div id="filtro">
+          <form th:action="@{/covid/{local}/periodo(local = ${pagina.pathString})}" method="get">
+            <div class="row">
+              <div class="form-group col-md-3">
+                <label>Inicio</label>
+                <select name="comeco" class="form-control" required>
+                  <option value="">Selecione</option>
+                  <option th:each="s : ${semanas}" th:value="${s}" th:text="|Semana ${s}|"></option>
+                </select>
+              </div>
+              <div class="form-group col-md-3">
+                <label>Fim</label>
+                <select name="fim" class="form-control" required>
+                  <option value="">Selecione</option>
+                  <option th:each="s : ${semanas}" th:value="${s}" th:text="|Semana ${s}|"></option>
+                </select>
+              </div>
+            </div>
+            <input type="submit" class="btn btn-success btn-confirmFilter" value="Procurar">
+          </form>
+        </div>
+
+        <table class="table table-striped table-hover text-center">
+            <thead>
+                <tr>
+                    <th>Semana</th>
+                    <th>Quantidade de Casos</th>
+                    <th>Quantidade de Óbitos</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr th:each="v : ${paginacao}">
+                  <td th:text="${v.semana}">Data</td>
+                  <td th:text="${v.qtCasos}">Data</td>
+                  <td th:text="${v.qtObitos}">Data</td>
+                </tr>
+            </tbody>
+        </table>
+      
+        <nav aria-label="..." class="paginacao">
+          <ul class="pagination">
+            <li th:if="${param.comeco == null}" th:class="${paginacao.number == 0} ? 'page-item disabled' : 'page-item' ">
+              <a class="page-link" tabindex="-1" aria-disabled="true" th:href="@{/covid/{local}(local=${pagina.pathString}, page=${paginacao.number - 1})}">Anterior</a>
+            </li>
+            <li th:if="${param.comeco}" th:class="${paginacao.number == 0} ? 'page-item disabled' : 'page-item' ">
+              <a class="page-link" tabindex="-1" aria-disabled="true" th:href="@{/covid/{local}/periodo(local=${pagina.pathString}, page=${paginacao.number - 1}, comeco=${param.comeco}, fim=${param.fim})}">Anterior</a>
+            </li>
+            <li class="page-link disabled">
+              <span th:text="|${paginacao.number + 1} de ${paginacao.totalPages}|"></span>
+            </li> 
+            <li th:if="${param.comeco == null}" th:class="${paginacao.number+1 == paginacao.totalPages} ? 'page-item disabled' : 'page-item' ">
+              <a class="page-link" th:href="@{/covid/{local}(local=${pagina.pathString}, page=${paginacao.number + 1})}">Próximo</a>
+            </li>
+            <li th:if="${param.comeco}" th:class="${paginacao.number+1 == paginacao.totalPages} ? 'page-item disabled' : 'page-item' ">
+              <a class="page-link" tabindex="-1" aria-disabled="true" th:href="@{/covid/{local}/periodo(local=${pagina.pathString}, page=${paginacao.number + 1}, comeco=${param.comeco}, fim=${param.fim})}">Anterior</a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+  </div>
+</body>
+</html>
+    

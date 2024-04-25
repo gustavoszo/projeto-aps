@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout-admin}">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+    <div layout:fragment="corpo">
+        <i class="fa-solid fa-play"></i><span> Covid</span>
+
+        <a th:href="@{/admin/covid}" class="btn btn-primary" style="float: right;"><i class="fa-solid fa-list"></i> Listar semanas</a>
+
+        <div class="container-fluid content">
+
+            <div class="container">
+                <div th:replace="~{fragments/alert}"></div>
+            </div>
+
+            <div th:if="${covid.id} == null" class="text-center">
+                <h3>Criar novo registro</h3>
+            </div>
+
+            <div th:if="${covid.id} != null" class="text-center">
+                <h3>Semana <span th:text="${covid.semana}"></span></h3>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <form method="post" th:action="${covid.id} != null ? @{/admin/covid/editar} : @{/admin/covid/cadastrar}" th:object="${covid}" class="padding-bottom">
+                        <div class="form-group padding-bottom">
+                            <label>Local</label>
+                            <select name="local" th:field="*{local}" class="form-control" th:classappend="${#fields.hasErrors('local')} ? 'is-invalid'">
+                                <option value="">Selecione</option>
+                                <option th:each="local : ${locais}" th:value="${local}" th:text="${local.descricao}">Selecione</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                <span th:errors="*{local}"></span>
+                            </div>
+                        </div>
+                        <div class="row padding-bottom">
+                            <div class="form-group col-md-6">
+                                <label>Número de casos</label>
+                                <input type="number" class="form-control" name="casos" th:field="*{qtCasos}" placeholder="Quantidade de casos" th:classappend="${#fields.hasErrors('qtCasos')} ? 'is-invalid'">
+                                <div class="invalid-feedback">
+                                    <span th:errors="*{qtCasos}"></span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Número de óbitos</label>
+                                <input type="number" class="form-control" name="obitos" th:field="*{qtObitos}" placeholder="Quantidade de óbitos" th:classappend="${#fields.hasErrors('qtObitos')} ? 'is-invalid'">
+                                <div class="invalid-feedback">
+                                    <span th:errors="*{qtObitos}"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="${covid.id} == null" class="form-group padding-bottom">
+                            <label>Semana</label>
+                            <input type="number" class="form-control" name="semana" th:field="*{semana}" placeholder="Semana do registro"  th:classappend="${#fields.hasErrors('semana')} ? 'is-invalid'">
+                            <div class="invalid-feedback">
+                                <span th:errors="*{semana}"></span>
+                            </div>
+                        </div>
+                        <div th:else>
+                            <input type="hidden" name="semana" th:field="*{semana}" th:value="${covid.semana}">
+                        </div>
+                            <input type="hidden" name="id" th:field="*{id}">
+                            <input type="submit" class="btn btn-primary btn-submit" value="Confirmar">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

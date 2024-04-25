@@ -4,45 +4,57 @@
     <meta charset="UTF-8">
 </head>
 <body>
-    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 border-end" style="background-color: rgb(245, 245, 245);" th:fragment="sidebar">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
-            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-            <span class="fs-4 mar" style="padding-top: 20px;">Sidebar</span> 
-          </a>
-          <hr>
-          <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-              <a href="#" class="nav-link active" aria-current="page">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-                <i class="fa-solid fa-house"></i>
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-                Dashboard
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                Orders
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-                Products
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-                Customers
-              </a>
-            </li>
-          </ul>
+  <div class="col-2 d-none d-lg-block px-0 border-end sticky-top" style="background-color: rgb(245, 245, 245);" th:fragment="sidebar">
+    <div class="d-flex mb-3 mb-md-0 me-md-auto">
+      <svg class="bi me-2" width="40" height="32"></svg>
+      <a th:href="@{/}" class="align-items-center text-decoration-none" style="padding-top: 20px;">
+        <span class="fs-4 mar text-secondary">
+          <i class="fa-solid fa-house"></i>
+          Home
+        </span>
+      </a>
     </div>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li>
+        <a th:href="@{/covid/{local} (local = sao-paulo) }" th:class="${pagina == 'Dashboard'} ? 'nav-link active' : 'nav-link'">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+          <i class="fa-solid fa-table-columns"></i>
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/covid/{local} (local = sao-paulo) }" th:class="${pagina == 'São Paulo'} ? 'nav-link active' : 'nav-link'">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+          São Paulo
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/covid/{local} (local = sao-bernardo) }" th:class="${pagina == 'São Bernardo'} ? 'nav-link active' : 'nav-link'">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+          São Bernardo
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/covid/{local} (local = sao-caetano) }" th:class="${pagina == 'São Caetano'} ? 'nav-link active' : 'nav-link'">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+          São Caetano
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/covid/{local} (local = santo-andre) }" th:class="${pagina == 'Santo André'} ? 'nav-link active' : 'nav-link'">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+          Santo André
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/covid/{local} (local = itaquera) }" th:class="${pagina == 'Itaquera'} ? 'nav-link active' : 'nav-link'">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+          Itaquera
+        </a>
+      </li>
+    </ul>
+  </div>
 </body>
 </html>
+

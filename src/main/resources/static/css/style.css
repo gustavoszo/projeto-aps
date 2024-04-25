@@ -1,15 +1,148 @@
+.nav{
+    height: 83vh;
+}
+
+.borda {
+    border: 1px solid gray;
+    width: 450px;
+    margin: auto;
+    margin-top: 150px;
+}
+
+/* header */
+.logo {
+    font-size: 30px;
+}
+
+.logo-color {
+    color: rgb(26, 190, 26)
+}
+
+.user-cursor {
+    cursor: default;
+}
+
+.menu {
+    display: none;
+}
+
+.menu-cursor {
+    cursor: pointer;
+}
+
+/* login */
+.padding-form {
+    padding-top: 150px;
+}
+
+.img-login {
+    font-size: 70px;
+    padding-bottom: 20px;
+}
+
 .formulario {
-    width: 500px;
+    width: 400px;
     margin: auto;
 }
 
-.form-logout{
+/* sidebar */ 
+.space-sidebar {
+    padding-top: 15px;
+}
+
+/* conteudo-local */
+.fa-play {
+    color: rgb(230, 230, 230)
+}
+
+.local-pagina {
+    font-size: 20px;
+}
+
+.content {
+    padding-top: 40px;
+}
+
+.triple-cards {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    padding-left: 10px;
+    justify-content: space-around;
 }
 
-.icone-log{
-    padding: 13px 0px 0px 0px;
+.double-cards {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
+.btn-filtro{
+    margin-top: 10px;
+}
+
+#filtro {
+    display: none;
+    padding-top: 10px;
+} 
+
+.btn-confirmFilter{
+    margin-top: 5px;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.paginacao {
+    padding: 20px;
+    width: 300px;
+    margin: auto;
+}
+
+/* dashboard */
+.space-bottom {
+    padding-bottom: 30px;
+}
+
+/* admin */
+/* sidebar */
+.my-sidebar {
+    z-index: 1;
+}
+
+.dropdown-menu {
+    z-index: 2;
+}
+
+
+/* icons */
+.fa-plus {
+    color: white;
+}
+
+.fa-pen-to-square {
+    color: #13c46f;
+}
+
+.fa-user-pen {
+    color: #13c43f;
+}
+
+.fa-trash {
+    color: red;
+}
+
+/* form */
+.forms {
+    width: 850px;
+    margin: auto;
+}
+
+.padding-bottom {
+    padding-bottom: 10px;
+}
+
+.btn-submit {
+    margin-top: 10px;
+}

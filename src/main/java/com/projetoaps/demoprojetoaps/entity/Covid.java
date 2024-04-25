@@ -10,56 +10,37 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor @NoArgsConstructor @Getter @Setter
+@AllArgsConstructor @NoArgsConstructor @Getter @Setter 
 @Entity
-@Table(name = "usuarios")
-public class Usuario implements Serializable {
+@Table(name = "covid_dados")
+public class Covid implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "{NotBlank.Usuario.nome}")
-    @Column(nullable = false, length = 100)
-    private String nome;
-
-    @NotBlank(message = "{NotBlank.Usuario.username}")
-    @Email(message = "Endereço de e-mail inválido", regexp = "^[a-z0-9.+-]+@[a-z0-9.-]+\\.[a-z]{2,}$")
-    @Column(nullable = false, unique = true, length = 100)
-    private String username;
-
-    @NotBlank(message = "{NotBlank.Usuario.password}")
-    @Size(min = 8)
-    @Column(nullable = false, length = 100)
-    private String password;
-
+    @Column(nullable = false, length = 25)
+    @NotNull(message = "{NotNull.Covid.local}")
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 10)
-    private Role role = Role.ROLE_USUARIO;
+    private Local local;
 
-    public enum Role {
-        ROLE_ADMIN("Admin"), 
-        ROLE_USUARIO("Usuário");
+    @Column(name = "casos", nullable = false)
+    @NotNull(message = "{NotNull.Covid.qtCasos}")
+    private Long qtCasos;
 
-        private String tipo;
+    @Column(name = "obitos", nullable = false)
+    @NotNull(message = "{NotNull.Covid.qtObitos}")
+    private Long qtObitos;
 
-        Role(String tipo) {
-            this.tipo = tipo;
-        }
-
-        public String getTipo() {
-            return this.tipo;
-        }
-
-    }
+    @Column(nullable = false, length = 3)
+    @NotNull(message = "{NotNull.Covid.semana}")
+    private Integer semana;
 
     @Override
     public int hashCode() {
@@ -77,7 +58,7 @@ public class Usuario implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Usuario other = (Usuario) obj;
+        Covid other = (Covid) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -85,5 +66,6 @@ public class Usuario implements Serializable {
             return false;
         return true;
     }
+
 
 }

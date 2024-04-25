@@ -18,6 +18,7 @@ public class SecurityLoggedUser {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
             System.out.println("INFO \n ================================= \n" + authentication.getPrincipal());
+            System.out.println("INFO \n ================================= \n" + authentication.getAuthorities());
             String username = authentication.getName();
             Usuario usuario = usuarioService.buscarPorUsername(username);
             return usuario;
