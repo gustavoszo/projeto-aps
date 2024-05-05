@@ -22,7 +22,7 @@ public class CovidService {
 
     @Transactional(readOnly = true)
     public Page<Covid> buscarTodosPorLocal(Pageable pageable, Local local) {
-        return covidRepository.findAllByLocal(pageable, local);
+        return covidRepository.findAllByLocalOrderBySemanaDesc(pageable, local);
     }
     
     @Transactional(readOnly = true)

@@ -13,7 +13,7 @@ import com.projetoaps.demoprojetoaps.entity.Local;
 
 public interface CovidRepository extends JpaRepository<Covid, Long> {
 
-    Page<Covid> findAllByLocal(Pageable page, Local local);
+    Page<Covid> findAllByLocalOrderBySemanaDesc(Pageable page, Local local);
 
     Optional<Covid> findByLocalAndSemana(Local local, Integer semana);
 
