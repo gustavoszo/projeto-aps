@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.projetoaps.demoprojetoaps.entity.Covid;
@@ -35,6 +36,7 @@ public class AdminController {
         return "/admin/home";
     }
     
+    // Usuarios
     @GetMapping("/usuarios")
     public String listarUsuarios(ModelMap model) {
         model.addAttribute("usuarios", usuarioService.buscarTodos());
@@ -82,8 +84,8 @@ public class AdminController {
         return "redirect:/admin/usuarios";
     }
 
-    @GetMapping("/usuarios/deletar/{id}")
-    public String deletarUsuario(@PathVariable("id") Long id, RedirectAttributes attr) {
+    @PostMapping("/usuarios/deletar")
+    public String deletarUsuario(@RequestParam("id") Long id, RedirectAttributes attr) {
         Usuario usuario = usuarioService.buscarPorId(id).orElse(null);
 
         if (usuario == null) return "redirect:/admin/usuarios";
@@ -93,6 +95,7 @@ public class AdminController {
         return "redirect:/admin/usuarios";
     }
     
+    // Covid-data
     @GetMapping("/covid")
     public String listarCovid(ModelMap model) {
         model.addAttribute("covid", covidService.buscarTodos());
@@ -139,8 +142,8 @@ public class AdminController {
         return "redirect:/admin/covid";
     }
 
-    @GetMapping("/covid/deletar/{id}")
-    public String deletarCovid(@PathVariable("id") Long id, RedirectAttributes attr) {
+    @PostMapping("/covid/deletar")
+    public String deletarCovid(@RequestParam("id") Long id, RedirectAttributes attr) {
         Covid covid = covidService.buscarPorId(id).orElse(null);
 
         if (covid == null) return "redirect:/admin/covid";

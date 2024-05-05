@@ -21,7 +21,20 @@ try {
   }
 })
 } catch {
-    console.log('Id(s) inexistente(s)');
+    console.log('Element(s) not found');
+}
+
+try {
+    var btnLogin = document.querySelector('.btn-login')
+    var loadLogin = document.querySelector('.load-login')
+    
+    btnLogin.addEventListener('click', function() {
+      console.log('clicou btn-login')
+      btnLogin.style.display = 'none';
+      loadLogin.style.display = 'block';
+  })
+  } catch {
+    console.log('Element(s) not found');
 }
 
 // Datatable

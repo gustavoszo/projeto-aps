@@ -32,7 +32,7 @@
                         <td>
                             <a th:href="@{/admin/usuarios/editar/{id} (id = ${u.id})}"><i class="fa-solid fa-user-pen"></i></a>
                             <!-- <a class="menu-cursor" th:id="${ 'btn_admin/usuarios/deletar/' + u.id }" data-bs-toggle="modal" data-bs-target="#deleteUsuario"><i class="fa-solid fa-trash"></i></a> -->
-                            <a href="*" data-bs-toggle="modal" data-bs-target="#deleteUsuario"><i class="fa-solid fa-trash"></i></a>
+                            <a href="*" data-bs-toggle="modal" th:data-bs-target="|#deleteUsuario-${u.id}|"><i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
                 </tbody>

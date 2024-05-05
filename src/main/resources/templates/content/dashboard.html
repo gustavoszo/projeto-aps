@@ -5,23 +5,41 @@
 </head>
 <body>
     <div layout:fragment="corpo">
+        <div class="local-pagina">
+            <i class="fa-solid fa-play"></i> <span class="fw-bold">Dashboard</span>
+        </div>
         <div class="container-fluid content">
-            <h2>Dashboard</h2>
 
             <div class="row space-bottom">
                 <div class="col-md-6">
                     <canvas id="myChartCasos"></canvas>
                 </div>
-                <div class="col-md-6 text-center">
-                    <!-- <h2>Algo</h2> -->
+                <div class="col-md-6 text-center" style="font-size: 20px;">
+                    <span>Total de casos: </span><span th:text="${totalCasos}"></span>
+                    <ol class="list-group list-group-numbered">
+                        <li th:each="index : ${#numbers.sequence(0, locais.size() - 1)}" class="list-group-item d-flex justify-content-between align-items-start">
+                          <div class="ms-2 me-auto">
+                            <div><span class="local-text" th:text="${locais[index]}"></span></div>
+                          </div>
+                          <span class="badge" th:text="|${casos[index]} casos|"></span>
+                        </li>
+                    </ol>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <canvas id="myChartObitos"></canvas>
                 </div>
-                <div class="col-md-6 text-center">
-                    <!-- <h2>Algo</h2> -->
+                <div class="col-md-6 text-center" style="font-size: 20px;">
+                    <span>Total de óbitos: </span><span th:text="${totalObitos}"></span>
+                    <ol class="list-group list-group-numbered">
+                        <li th:each="index : ${#numbers.sequence(0, locais.size() - 1)}" class="list-group-item d-flex justify-content-between align-items-start">
+                          <div class="ms-2 me-auto">
+                            <div><span class="local-text" th:text="${locais[index]}"></span></div>
+                          </div>
+                          <span class="badge" th:text="|${obitos[index]} óbitos|"></span>
+                        </li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -55,7 +73,7 @@
             const dataCasos = {
                 labels: locais,
                 datasets: [{
-                    label: 'Total de casos',
+                    label: 'Total de casos por local',
                     data: casos,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -78,7 +96,7 @@
             const dataObitos = {
                 labels: locais,
                 datasets: [{
-                    label: 'Total de óbitos',
+                    label: 'Total de óbitos por local',
                     data: obitos,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',

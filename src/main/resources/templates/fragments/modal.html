@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="deleteUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="usuario">
+<div class="modal fade" th:id="|deleteUsuario-${u.id}|" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="usuario">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -10,26 +10,31 @@
         Deseja realmente deletar esse usuário?
       </div>
       <div class="modal-footer">
-        <a th:href="@{/admin/usuarios/deletar/{id} (id = ${u.id})}" class="btn btn-danger">Deletar</a>
+        <form th:action="@{/admin/usuarios/deletar}" method="post">
+          <input type="hidden" name="id" id="id" th:value="${u.id}">
+          <input type="submit" class="btn btn-danger" value="Deletar">
+        </form>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="deleteCovid" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="covid">
+<div class="modal fade" th:id="|deleteCovid-${c.id}|" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="covid">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" th:text="|${c.local.descricao} de ${c.semana}|">Apagar registro</h5>
+        <h5 class="modal-title" id="exampleModalLabel" th:text="|${c.local.descricao} - Semana ${c.semana}|">Apagar registro</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         Deseja realmente deletar esse registro?
       </div>
       <div class="modal-footer">
-        <a th:href="@{/admin/covid/deletar/{id} (id = ${c.id})}" class="btn btn-danger">Deletar</a>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <form th:action="@{/admin/covid/deletar}" method="post">
+          <input type="hidden" name="id" id="id" th:value="${c.id}">
+          <input type="submit" class="btn btn-danger" value="Deletar">
+        </form>
       </div>
     </div>
   </div>

@@ -33,7 +33,7 @@
                         <td th:text="${c.semana}">Data</td>
                         <td>
                             <a th:href="@{/admin/covid/editar/{id} (id = ${c.id})}"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="*" data-bs-toggle="modal" data-bs-target="#deleteCovid"><i class="fa-solid fa-trash"></i></a>
+                            <a href="*" data-bs-toggle="modal" th:data-bs-target="|#deleteCovid-${c.id}|"><i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
                 </tbody>

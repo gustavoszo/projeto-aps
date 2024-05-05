@@ -61,8 +61,8 @@ public class CovidService {
     }
 
     @Transactional(readOnly = true)
-    public List<Integer> buscarSemanas() {
-        return covidRepository.findAllSemana();
+    public List<Integer> buscarSemanas(Local local) {
+        return covidRepository.findAllSemanaByLocal(local);
     }
 
     @Transactional(readOnly = true)
@@ -103,6 +103,16 @@ public class CovidService {
     @Transactional(readOnly = true)
     public List<Object[]> buscarQuantidadeObitos() {
         return covidRepository.findAllQtObitos();
+    }
+
+    @Transactional(readOnly = true) 
+    public Long buscarTotalCasos() {
+        return covidRepository.getTotalCasos();
+    }
+
+    @Transactional(readOnly = true) 
+    public Long buscarTotalObitos() {
+        return covidRepository.getTotalObitos();
     }
 
 }

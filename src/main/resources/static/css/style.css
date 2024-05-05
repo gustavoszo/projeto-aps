@@ -1,3 +1,7 @@
+body {
+    font-family: 'Roboto';
+}
+
 .nav{
     height: 83vh;
 }
@@ -45,6 +49,14 @@
     margin: auto;
 }
 
+.load-login {
+    display: none;
+}
+
+.spinner-border {
+    animation-duration: 1.5s;
+}
+
 /* sidebar */ 
 .space-sidebar {
     padding-top: 15px;
@@ -90,6 +102,16 @@
     margin-top: 5px;
 }
 
+.btn-success {
+    background-color: #13c43f;
+    border-color: #13c43f;
+}
+
+.btn-success:hover {
+    background-color: #13c93f;
+    border-color: #13c93f;
+}
+
 .table {
     margin-top: 20px;
 }
@@ -103,6 +125,14 @@
 /* dashboard */
 .space-bottom {
     padding-bottom: 30px;
+}
+
+.local-text {
+    color: rgba(54, 162, 235, 0.9);
+}
+
+.badge {
+    background-color: rgba(255, 206, 86, 1);
 }
 
 /* admin */

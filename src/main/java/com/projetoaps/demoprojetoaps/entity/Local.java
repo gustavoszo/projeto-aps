@@ -5,7 +5,7 @@ public enum Local {
     SANTO_ANDRE("Santo André", "santo-andre"),
     SAO_BERNARDO("São Bernardo", "sao-bernardo"),
     SAO_CAETANO("São Caetano", "sao-caetano"),
-    ITAQUERA("Itaquera", "itaquera");
+    MAUA("Mauá", "maua");
 
     private String descricao;
     private String pathString;

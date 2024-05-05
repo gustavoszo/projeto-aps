@@ -23,8 +23,8 @@ public interface CovidRepository extends JpaRepository<Covid, Long> {
     @Query("SELECT SUM(c.qtCasos) FROM Covid c WHERE c.local = ?1")
     Long findTotalQtCasosByLocal(Local local);
 
-    @Query("SELECT c.semana FROM Covid c")
-    List<Integer> findAllSemana();
+    @Query("SELECT c.semana FROM Covid c WHERE c.local = ?1")
+    List<Integer> findAllSemanaByLocal(Local local);
 
     @Query("SELECT MAX(c.semana) FROM Covid c")
     Integer findFirstByOrderBySemanaDesc();
@@ -50,5 +50,12 @@ public interface CovidRepository extends JpaRepository<Covid, Long> {
 
     @Query("SELECT c.local, SUM(c.qtObitos) FROM Covid c GROUP BY c.local")
     List<Object[]> findAllQtObitos();
+
+    // Valores dashboard
+    @Query("SELECT SUM(c.qtObitos) from Covid c")
+    Long getTotalObitos();
+
+    @Query("SELECT SUM(c.qtCasos) from Covid c")
+    Long getTotalCasos();
  
 }

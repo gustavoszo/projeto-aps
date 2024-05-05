@@ -45,7 +45,7 @@ public class SpringSecurityConfig {
                 .permitAll()
             )
             .logout( logout -> logout
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/login")
                 .deleteCookies("JSESSIONID")
                 .permitAll()
             )
@@ -55,6 +55,7 @@ public class SpringSecurityConfig {
     @SuppressWarnings("removal")
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http, PasswordEncoder passwordEncoder, SecurityUserDetailsService userDetailsService) throws Exception {
+        // O método getShared.. registra o authenticationManager
         return http.getSharedObject(AuthenticationManagerBuilder.class)
         .userDetailsService(userDetailsService)
         .passwordEncoder(passwordEncoder)

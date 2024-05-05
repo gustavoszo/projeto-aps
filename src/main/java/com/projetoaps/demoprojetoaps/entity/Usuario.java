@@ -32,12 +32,12 @@ public class Usuario implements Serializable {
     private String nome;
 
     @NotBlank(message = "{NotBlank.Usuario.username}")
-    @Email(message = "Endereço de e-mail inválido", regexp = "^[a-z0-9.+-]+@[a-z0-9.-]+\\.[a-z]{2,}$")
+    @Email(message = "Endereço de e-mail inválido")
     @Column(nullable = false, unique = true, length = 100)
     private String username;
 
     @NotBlank(message = "{NotBlank.Usuario.password}")
-    @Size(min = 8)
+    @Size(min = 8, max = 100)
     @Column(nullable = false, length = 100)
     private String password;
 

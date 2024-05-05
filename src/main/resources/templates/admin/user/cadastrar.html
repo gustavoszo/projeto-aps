@@ -52,7 +52,7 @@
                             </div>
                             <div th:if="${usuario.id} == null" class="form-group padding-bottom">
                                 <label>Senha</label>
-                                <input type="password" class="form-control" name="password" th:field="*{password}" placeholder="Senha" h:classappend="${#fields.hasErrors('password')} ? 'is-invalid">
+                                <input type="password" class="form-control" name="password" th:field="*{password}" placeholder="Senha" th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'">
                                 <div class="invalid-feedback">
                                     <span th:errors="*{password}"></span>
                                 </div>
